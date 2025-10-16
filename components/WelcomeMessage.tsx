@@ -21,6 +21,10 @@ export default function WelcomeMessage() {
             <span className="text-red-100 mt-1">*</span>
             <span>Searching through wikipedia</span>
           </li>
+          <li className="flex items-start gap-2">
+            <span className="text-red-100 mt-1">*</span>
+            <span>Creating diagrams</span>
+          </li>
         </ul>
         <p className="text-red-200 mt-4 leading-relaxed">
           Feel free to ask me anything! I’m here to help.

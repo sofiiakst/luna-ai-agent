@@ -20,10 +20,10 @@ export default function Home() {
             Meet Luna
           </motion.h1>
           <p className="max-w-[600px] text-lg text-gray-300 md:text-xl xl:text-2xl">
-            Your companion that goes beyond conversation – it gets things done
+            And just get things done
             <br />
             <span className="text-gray-400 text-sm">
-              Powered by IBM's WxTools
+              Powered by IBM's WxTools & Claude
             </span>
           </p>
         </header>

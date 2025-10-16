@@ -1,6 +1,6 @@
 import { useUser } from "@clerk/clerk-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { BotIcon } from "lucide-react";
+import { BotIcon, Cat } from "lucide-react";
 import React from "react";
 import MermaidChart from "./MermaidChart";
 
@@ -136,7 +136,7 @@ export default function MessageBubble({ content, isUser }: MessageBubbleProps) {
                 </AvatarFallback>
               </Avatar>
             ) : (
-              <BotIcon className="h-5 w-5 text-black" />
+              <Cat className="h-5 w-5 text-black" />
             )}
           </div>
         </div>
