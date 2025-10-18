@@ -23,7 +23,7 @@ export default function Home() {
             And just get things done
             <br />
             <span className="text-gray-400 text-sm">
-              Powered by IBM's WxTools & Claude
+              Powered by IBM WxTools & Claude
             </span>
           </p>
         </header>

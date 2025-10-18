@@ -123,10 +123,14 @@ export async function POST(req: Request) {
                       text = item.content;
                     } else if (Array.isArray(item.content)) {
                       text = item.content
-                        .map((block: any) => {
+                        .map((block: unknown) => {
                           if (typeof block === "string") return block;
-                          if (block?.text) return block.text;
-                          if (block?.content) return block.content;
+                          if (typeof block === "object" && block !== null) {
+                            const obj = block as Record<string, unknown>;
+                            if (typeof obj.text === "string") return obj.text;
+                            if (typeof obj.content === "string")
+                              return obj.content;
+                          }
                           return "";
                         })
                         .join("");

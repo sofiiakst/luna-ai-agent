@@ -1,4 +1,3 @@
-import { ChatAnthropic } from "@langchain/anthropic";
 import { ToolNode } from "@langchain/langgraph/prebuilt";
 import { TavilySearch } from "@langchain/tavily";
 
@@ -25,6 +24,7 @@ import {
   MessagesPlaceholder,
 } from "@langchain/core/prompts";
 import { AgentMode } from "./types";
+import { ChatAnthropic } from "@langchain/anthropic";
 
 const trimmer = trimMessages({
   maxTokens: 10,
@@ -194,7 +194,7 @@ Work independently - other researchers are handling different aspects simultaneo
   );
 
   // Build conversation chain properly
-  let conversationMessages: BaseMessage[] = [systemMessage, ...messages];
+  const conversationMessages: BaseMessage[] = [systemMessage, ...messages];
   let response = await model.invoke(conversationMessages);
 
   // Handle tool calls iteratively (up to 10 iterations)

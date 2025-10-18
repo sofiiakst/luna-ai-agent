@@ -28,7 +28,7 @@ const parseMessage = (content: string): Segment[] => {
 
   // 🔹 detect code fences ```lang ... ```
   const regex = /```(\w+)?\n([\s\S]*?)```/g;
-  let result: Segment[] = [];
+  const result: Segment[] = [];
   let lastIndex = 0;
   let match;
 
