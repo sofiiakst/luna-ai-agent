@@ -1,7 +1,9 @@
 import { useUser } from "@clerk/clerk-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { BotIcon, Cat } from "lucide-react";
+import { Cat } from "lucide-react";
 import React from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import MermaidChart from "./MermaidChart";
 
 interface MessageBubbleProps {
@@ -83,7 +85,7 @@ export default function MessageBubble({ content, isUser }: MessageBubbleProps) {
             : "bg-gray-200 text-gray-900 rounded-bl-none ring-gray-200"
         }`}
       >
-        <div className="whitespace-pre-wrap text-[15px] leading-relaxed space-y-3">
+        <div className="text-[15px] leading-relaxed space-y-3">
           {segments.map((seg, i) => {
             if (seg.type === "mermaid") {
               return <MermaidChart key={i} code={seg.content} />;
@@ -107,12 +109,34 @@ export default function MessageBubble({ content, isUser }: MessageBubbleProps) {
                   key={i}
                   className="bg-black text-purple-200 p-3 rounded-lg overflow-x-auto text-sm font-mono"
                 >
-                  {seg.content}
+                  <code>{seg.content}</code>
                 </pre>
               );
             }
 
-            return <p key={i}>{seg.content}</p>;
+            // Render text segments with Markdown
+            return (
+              <div
+                key={i}
+                className="prose prose-sm max-w-none
+                prose-headings:font-bold prose-headings:text-gray-900
+                prose-h1:text-xl prose-h2:text-lg prose-h3:text-base
+                prose-p:my-2 prose-p:leading-relaxed
+                prose-strong:font-semibold prose-strong:text-gray-900
+                prose-em:italic
+                prose-ul:my-2 prose-ul:list-disc prose-ul:pl-5
+                prose-ol:my-2 prose-ol:list-decimal prose-ol:pl-5
+                prose-li:my-1
+                prose-a:text-blue-600 prose-a:underline hover:prose-a:text-blue-800
+                prose-code:bg-gray-800 prose-code:text-purple-300 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono
+                prose-blockquote:border-l-4 prose-blockquote:border-gray-400 prose-blockquote:pl-4 prose-blockquote:italic
+              "
+              >
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {seg.content}
+                </ReactMarkdown>
+              </div>
+            );
           })}
         </div>
 
